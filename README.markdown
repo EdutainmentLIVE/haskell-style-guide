@@ -11,3 +11,5 @@ indent-size: 2
 line-length: 79
 sort-imports: true
 ```
+## Use exceptions only for exceptional circumstances not for logic
+Exceptions should be reserved for truly exceptional situations rather than programming logic.
