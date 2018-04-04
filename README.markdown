@@ -11,3 +11,17 @@ indent-size: 2
 line-length: 79
 sort-imports: true
 ```
+
+## Table of contents
+
+- [Prefer `let` over `where`](#prefer-let-over-where)
+
+## Prefer `let` over `where`
+
+``` hs
+-- bad
+3 * kibi where kibi = 2 ^ 10
+
+-- good
+let kibi = 2 ^ 10 in 3 * kibi
+```
