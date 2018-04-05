@@ -2,6 +2,9 @@
 
 This guide describes how we like to write [Haskell](https://haskell-lang.org) here at [ITProTV](https://itpro.tv).
 It focuses more on style and best practices than formatting and layout.
+These are recommendations, not hard and fast rules.
+Deviating from the guide is allowed, but be prepared to defend your decision in code review.
+
 
 ## Table of contents
 
