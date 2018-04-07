@@ -25,6 +25,8 @@ line-length: 79
 sort-imports: true
 ```
 
+https://chrisdone.com/posts/hindent-5
+
 ## Prefer `let` over `where`
 
 `let` is an expression and follows the same rules as everything else.
