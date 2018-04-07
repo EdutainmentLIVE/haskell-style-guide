@@ -5,6 +5,8 @@ It focuses more on style and best practices than formatting and layout.
 These are recommendations, not hard and fast rules.
 Deviating from the guide is allowed, but be prepared to defend your decision in code review.
 
+In general we prefer clarity over cleverness.
+Try to write code that is easy to understand, debug, and modify.
 
 ## Table of contents
 
