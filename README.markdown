@@ -13,6 +13,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Formatting](#formatting)
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
+- [Avoid using partial functions](#avoid-using-partial-functions)
 
 ## Formatting
 
@@ -60,3 +61,19 @@ first xs = case xs of
 ```
 
 https://www.parsonsmatt.org/2017/10/11/type_safety_back_and_forth.html
+
+## Avoid using partial functions
+
+Many libraries, including the standard library, come with partial functions that throw exceptions at runtime.
+Wherever possible, avoid using these partial functions and prefer their total (non-partial) versions instead.
+
+``` hs
+-- bad
+head []
+
+-- good
+listToMaybe []
+```
+
+https://begriffs.com/posts/2013-08-18-dont-be-partial-to-partial-functions.html
+
