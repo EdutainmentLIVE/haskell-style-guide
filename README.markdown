@@ -27,6 +27,9 @@ sort-imports: true
 
 ## Prefer `let` over `where`
 
+`let` is an expression and follows the same rules as everything else.
+`where` can only be used with declarations and can be awkward to use with `do` notation, guards, and point-free code.
+
 ``` hs
 -- bad
 3 * kibi where kibi = 2 ^ 10
@@ -34,3 +37,5 @@ sort-imports: true
 -- good
 let kibi = 2 ^ 10 in 3 * kibi
 ```
+
+https://stackoverflow.com/questions/4362328/haskell-where-vs-let
