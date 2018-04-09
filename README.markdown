@@ -12,6 +12,7 @@ Try to write code that is easy to understand, debug, and modify.
 
 - [Formatting](#formatting)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Avoid writing partial functions](#avoid-writing-partial-functions)
 
 ## Formatting
 
@@ -41,3 +42,21 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+
+## Avoid writing partial functions
+
+Partial functions are difficult to work with because they can fail but their type signatures don't express that.
+Avoid non-exhaustive pattern matching, `undefined`, and `error`.
+Instead prefer types like `Maybe result` or `Either failure success`.
+
+``` hs
+-- bad
+first (x : _) = x
+
+-- good
+first xs = case xs of
+  x : _ -> Just x
+  _ -> Nothing
+```
+
+https://www.parsonsmatt.org/2017/10/11/type_safety_back_and_forth.html
