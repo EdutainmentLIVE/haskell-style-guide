@@ -18,15 +18,8 @@ Try to write code that is easy to understand, debug, and modify.
 
 ## Formatting
 
-We use [`hindent-5.2.5`](https://hackage.haskell.org/package/hindent-5.2.5) to format all Haskell code with this config:
-
-``` yaml
-# .hindent.yaml
-force-trailing-newline: true
-indent-size: 2
-line-length: 79
-sort-imports: true
-```
+We use [Hindent](https://github.com/commercialhaskell/hindent) to format all Haskell code.
+It may not format everything perfectly, but we prefer it to arguing about layout.
 
 https://chrisdone.com/posts/hindent-5
 
