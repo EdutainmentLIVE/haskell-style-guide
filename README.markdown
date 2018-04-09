@@ -13,6 +13,8 @@ Try to write code that is easy to understand, debug, and modify.
 - [Formatting](#formatting)
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
+- [Avoid using partial functions](#avoid-using-partial-functions)
+- [Avoid throwing exceptions](#avoid-throwing-exceptions)
 
 ## Formatting
 
@@ -60,3 +62,37 @@ first xs = case xs of
 ```
 
 https://www.parsonsmatt.org/2017/10/11/type_safety_back_and_forth.html
+
+## Avoid using partial functions
+
+Many libraries, including the standard library, come with partial functions that throw exceptions at runtime.
+Wherever possible, avoid using these partial functions and prefer their total (non-partial) versions instead.
+
+``` hs
+-- bad
+head []
+
+-- good
+listToMaybe []
+```
+
+https://begriffs.com/posts/2013-08-18-dont-be-partial-to-partial-functions.html
+
+## Avoid throwing exceptions
+
+Even if you're already in `IO`, you should prefer expressing failure with types over using `throw`.
+Just because `IO` can throw exceptions doesn't mean that the only failure mode in `IO` should be exceptions.
+
+``` hs
+-- bad
+if canAccess thing user
+  then pure thing
+  else throw (userError "cannot access thing")
+
+-- good
+if canAccess thing user
+  then pure (Just thing)
+  else pure Nothing
+```
+
+https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
