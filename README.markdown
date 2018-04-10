@@ -15,6 +15,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
+- [Prefer qualified imports](#prefer-qualified-imports)
 
 ## Formatting
 
@@ -89,3 +90,17 @@ if canAccess thing user
 ```
 
 https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
+
+## Prefer qualified imports
+
+Qualifying imports makes it clear where things come from at the cost of making things more verbose.
+
+``` hs
+-- bad
+import Data.Aeson
+
+-- good
+import qualified Data.Aeson as Aeson
+```
+
+https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
