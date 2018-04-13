@@ -12,6 +12,7 @@ Try to write code that is easy to understand, debug, and modify.
 
 - [Formatting](#formatting)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Avoid pure `do`](#avoid-pure-do)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
@@ -37,6 +38,23 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+
+## Avoid pure `do`
+
+Normally `do` notation is used for monadic expressions.
+It is possible to use it with pure expressions, but it's confusing.
+
+``` hs
+-- bad
+double x = do
+  let two = 2
+  x * two
+
+-- good
+double x =
+  let two = 2
+  in x * two
+```
 
 ## Avoid writing partial functions
 
