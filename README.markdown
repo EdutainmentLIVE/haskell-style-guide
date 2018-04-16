@@ -104,4 +104,14 @@ import Data.Text (Text, pack, unpack)
 import qualified Data.Aeson as Aeson
 ```
 
+When importing a module named `A.B.C`, generally prefer aliasing it as `C`.
+If that doesn't feel right, please consult the following table:
+
+Module | Alias
+--- | ---
+`Control.Exception` | `Exception`
+`Control.Monad.IO.Class` | `IO`
+`Data.ByteString` | `Bytes`
+`Data.ByteString.Lazy` | `LazyBytes`
+
 https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
