@@ -107,3 +107,14 @@ if canAccess thing user
 ```
 
 https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
+
+## Warnings and hints
+
+### Compiler warnings cannot be merged to master
+
+NB: We use -Wall (-Weverything starting in ghc 8.4.1) and -Werror in package.yaml files to catch as many potential mistakes as possible.
+One of the great things about Haskell is the static analysis provided by the compiler/type system. With that, and [select is not broken](https://blog.codinghorror.com/the-first-rule-of-programming-its-always-your-fault/) i.e. the compiler is not at fault, code that violates these cannot be permitted to make it into the primary branch, most often `master`.
+
+### Hlint warnings should not be merged to master
+
+Linters allow us to keep a common baseline of style and enforce some of the above guidelines such as disallowing `head`. We use [hlint](https://github.com/ndmitchell/hlint) and things caught by it should not be merged into `master` for projects.
