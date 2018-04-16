@@ -109,7 +109,9 @@ If that doesn't feel right, please consult the following table:
 
 Module | Alias
 --- | ---
-`Control.Exception` | `Exception`
+`Foreign` | `Foreign`
+`Data.List` | `List`
+`Data.List.NonEmpty` | `NonEmpty`
 `Control.Monad.IO.Class` | `IO`
 `Data.ByteString` | `Bytes`
 `Data.ByteString.Lazy` | `LazyBytes`
