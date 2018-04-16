@@ -98,6 +98,7 @@ Qualifying imports makes it clear where things come from at the cost of making t
 ``` hs
 -- bad
 import Data.Aeson
+import Data.Text (Text, pack, unpack)
 
 -- good
 import qualified Data.Aeson as Aeson
