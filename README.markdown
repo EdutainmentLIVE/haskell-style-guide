@@ -16,6 +16,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
+- [Prefer qualified imports](#prefer-qualified-imports)
 
 ## Formatting
 
@@ -107,3 +108,31 @@ if canAccess thing user
 ```
 
 https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
+
+## Prefer qualified imports
+
+Qualifying imports makes it clear where things come from at the cost of making things more verbose.
+
+``` hs
+-- bad
+import Data.Aeson
+import Data.Text (Text, pack, unpack)
+
+-- good
+import qualified Data.Aeson as Aeson
+import qualified Data.Text as Text
+```
+
+When importing a module named `A.B.….Z`, generally prefer aliasing it as `Z`.
+If that doesn't feel right, please consult the following table:
+
+Module | Alias
+--- | ---
+`Foreign` | `Foreign`
+`Data.List` | `List`
+`Data.List.NonEmpty` | `NonEmpty`
+`Control.Monad.IO.Class` | `IO`
+`Data.ByteString` | `Bytes`
+`Data.ByteString.Lazy` | `LazyBytes`
+
+https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
