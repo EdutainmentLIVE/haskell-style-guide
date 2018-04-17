@@ -102,9 +102,10 @@ import Data.Text (Text, pack, unpack)
 
 -- good
 import qualified Data.Aeson as Aeson
+import qualified Data.Text as Text
 ```
 
-When importing a module named `A.B.C`, generally prefer aliasing it as `C`.
+When importing a module named `A.B.….Z`, generally prefer aliasing it as `Z`.
 If that doesn't feel right, please consult the following table:
 
 Module | Alias
