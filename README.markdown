@@ -8,9 +8,13 @@ Deviating from the guide is allowed, but be prepared to defend your decision in 
 In general we prefer clarity over cleverness.
 Try to write code that is easy to understand, debug, and modify.
 
+> [Haskell 2010](https://www.haskell.org/onlinereport/haskell2010/) ought to be enough for anybody.
+
 ## Table of contents
 
-- [Formatting](#formatting)
+- [Avoid compiler warnings](#avoid-compiler-warnings)
+- [Apply HLint suggestions](#apply-hlint-suggestions)
+- [Format with Hindent](#format-with-hindent)
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Avoid pure `do`](#avoid-pure-do)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
@@ -18,7 +22,24 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
 - [Prefer qualified imports](#prefer-qualified-imports)
 
-## Formatting
+## Avoid compiler warnings
+
+Code should compile with `-Weverything` and `-Werror`.
+We ignore a few warnings:
+
+- `-Wno-implicit-prelude`
+- `-Wno-safe`
+- `-Wno-unsafe`
+
+## Apply HLint suggestions
+
+We use [HLint](https://github.com/ndmitchell/hlint#readme) to lint all Haskell code.
+It suggests many good ways to improve code.
+We use a somewhat custom configuration, but the exact details aren't too important.
+
+https://neilmitchell.blogspot.com/2009/09/how-i-use-hlint.html
+
+## Format with Hindent
 
 We use [Hindent](https://github.com/commercialhaskell/hindent) to format all Haskell code.
 It may not format everything perfectly, but we prefer it to arguing about layout.
