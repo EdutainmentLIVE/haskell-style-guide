@@ -15,6 +15,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Apply HLint suggestions](#apply-hlint-suggestions)
 - [Format with Hindent](#format-with-hindent)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Prefer `case` expressions](#prefer-case-expressions)
 - [Avoid multiple function declarations](#avoid-multiple-function-declarations)
 - [Prefer `do` notation](#prefer-do-notation)
 - [Avoid pure `do`](#avoid-pure-do)
@@ -65,6 +66,22 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+
+## Prefer `case` expressions
+
+`case` expressions are generally easier to grok even though they're often longer than the equivalent expression using functions.
+
+``` hs
+-- bad
+putStrLn ("howdy " ++ maybe "stranger." (++ "!") maybeName)
+
+-- good
+putStrLn (case maybeName of
+  Nothing -> "stranger."
+  Just name -> name ++ "!")
+```
+
+https://www.yesodweb.com/blog/2015/10/beginner-friendly-code-and-apis
 
 ## Avoid multiple function declarations
 
