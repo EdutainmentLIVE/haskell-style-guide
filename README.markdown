@@ -22,6 +22,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
 - [Prefer qualified imports](#prefer-qualified-imports)
+- [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
 
 ## Avoid compiler warnings
@@ -174,6 +175,22 @@ Module | Alias
 `Data.ByteString.Lazy` | `LazyBytes`
 
 https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
+
+## Prefer unqualified operators
+
+Qualified operators are visually noisy and can be hard to read.
+Import them explicitly instead of using them from a qualified import.
+
+``` hs
+-- bad
+import qualified Data.Aeson as Aeson
+Aeson.object [ "successful" Aeson..= True ]
+
+-- good
+import Data.Aeson ((.=))
+import qualified Data.Aeson
+Aeson.object [ "successful" .= True ]
+```
 
 ## Prefer unique identifiers
 
