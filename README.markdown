@@ -1,14 +1,13 @@
 # ITProTV's Haskell style guide
 
+> [Haskell 2010](https://www.haskell.org/onlinereport/haskell2010/) ought to be enough for anybody.
+
 This guide describes how we like to write [Haskell](https://haskell-lang.org) here at [ITProTV](https://itpro.tv).
 It focuses more on style and best practices than formatting and layout.
 These are recommendations, not hard and fast rules.
 Deviating from the guide is allowed, but be prepared to defend your decision in code review.
-
 In general we prefer clarity over cleverness.
 Try to write code that is easy to understand, debug, and modify.
-
-> [Haskell 2010](https://www.haskell.org/onlinereport/haskell2010/) ought to be enough for anybody.
 
 ## Table of contents
 
