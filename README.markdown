@@ -22,6 +22,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
 - [Prefer qualified imports](#prefer-qualified-imports)
+- [Prefer unique identifiers](#prefer-unique-identifiers)
 
 ## Avoid compiler warnings
 
@@ -173,3 +174,17 @@ Module | Alias
 `Data.ByteString.Lazy` | `LazyBytes`
 
 https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
+
+## Prefer unique identifiers
+
+Any exported identifier within a project should aim to be unique in the context of that project.
+This makes it easy to import the entire project and play around in the REPL without excessive qualification.
+The redundancy, as in `User.userName user`, is not too big of a problem in practice.
+
+``` hs
+-- bad
+data User = User { name :: Text }
+
+-- good
+data User = User { userName :: Text }
+```
