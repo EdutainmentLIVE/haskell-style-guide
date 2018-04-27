@@ -16,6 +16,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Apply HLint suggestions](#apply-hlint-suggestions)
 - [Format with Hindent](#format-with-hindent)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Prefer `do` notation](#prefer-do-notation)
 - [Avoid pure `do`](#avoid-pure-do)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
 - [Avoid using partial functions](#avoid-using-partial-functions)
@@ -60,6 +61,21 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+
+## Prefer `do` notation
+
+`do` notation is generally easier to read because it's similar to imperative code.
+It's also easier to modify, for example by adding logging.
+Compact expressions using explicit monadic operators like `(>>=)` should be avoided.
+
+``` hs
+-- bad
+f >>= g
+
+-- good
+do x <- f
+   g f
+```
 
 ## Avoid pure `do`
 
