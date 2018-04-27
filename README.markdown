@@ -23,6 +23,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
 - [Prefer qualified imports](#prefer-qualified-imports)
 - [Prefer unqualified operators](#prefer-unqualified-operators)
+- [Prefer functions over operators](#prefer-functions-over-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
 
 ## Avoid compiler warnings
@@ -190,6 +191,21 @@ Aeson.object [ "successful" Aeson..= True ]
 import Data.Aeson ((.=))
 import qualified Data.Aeson
 Aeson.object [ "successful" .= True ]
+```
+
+## Prefer functions over operators
+
+When both a function and an operator are available,
+prefer the function over the operator.
+Functions always follow the same rules,
+unlike operators which force you to take precedence into consideration.
+
+``` hs
+-- bad
+scooby & snack .~ True
+
+-- good
+set snack True scooby
 ```
 
 ## Prefer unique identifiers
