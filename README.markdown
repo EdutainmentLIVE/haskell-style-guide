@@ -70,11 +70,11 @@ Compact expressions using explicit monadic operators like `(>>=)` should be avoi
 
 ``` hs
 -- bad
-f >>= g
+getLine >>= print
 
 -- good
-do x <- f
-   g f
+do line <- getLine
+   print line
 ```
 
 ## Avoid pure `do`
