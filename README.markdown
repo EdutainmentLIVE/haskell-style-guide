@@ -27,6 +27,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Prefer functions over operators](#prefer-functions-over-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
+- [Avoid `String`](#avoid-string)
 
 ## Avoid compiler warnings
 
@@ -269,3 +270,19 @@ module Toppings where
 -- good
 module Toppings ( pepperoni ) where
 ```
+
+## Avoid `String`
+
+`String` is a linked list of characters,
+which is a remarkably bad data type for almost all purposes.
+Whenever possible, prefer using `Text` instead.
+
+``` hs
+-- bad
+"beans" :: String
+
+-- good
+"beans" :: Text
+```
+
+http://www.stephendiehl.com/posts/strings.html
