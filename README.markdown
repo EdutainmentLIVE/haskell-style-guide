@@ -24,6 +24,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
+- [Prefer explicit export lists](#prefer-explicit-export-lists)
 
 ## Avoid compiler warnings
 
@@ -219,4 +220,17 @@ data User = User { name :: Text }
 
 -- good
 data User = User { userName :: Text }
+```
+
+## Prefer explicit export lists
+
+Explicit export lists make it clear exactly which identifiers are being exported.
+They also make it easy to refactor a module by hiding or exposing certain identifiers.
+
+``` hs
+-- bad
+module Toppings where
+
+-- good
+module Toppings ( pepperoni ) where
 ```
