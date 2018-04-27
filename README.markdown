@@ -15,6 +15,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Apply HLint suggestions](#apply-hlint-suggestions)
 - [Format with Hindent](#format-with-hindent)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Avoid multiple function declarations](#avoid-multiple-function-declarations)
 - [Prefer `do` notation](#prefer-do-notation)
 - [Avoid pure `do`](#avoid-pure-do)
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
@@ -64,6 +65,23 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+
+## Avoid multiple function declarations
+
+Multiple function declarations force you to repeat the function name and all the arguments.
+Renaming any one of them requires changing every line.
+Also each function declaration could use different argument names, which would be confusing.
+
+``` hs
+-- bad
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+-- good
+factorial n = case n of
+  0 -> 1
+  _ -> n * (factorial - 1)
+```
 
 ## Prefer `do` notation
 
