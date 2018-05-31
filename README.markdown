@@ -31,6 +31,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
 - [Use smart constructors](#use-smart-constructors)
+- [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
 
 ## Avoid compiler warnings
 
@@ -350,3 +351,24 @@ fromEmail (Email x) = x
 ```
 
 https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html
+
+## Avoid fields with `newtype`s
+
+If you expose record fields for a type that has a hidden constructor,
+record updates can break the invariants of your smart constructors.
+Use regular functions to access the data in the `newtype`.
+
+``` hs
+-- bad
+newtype Natural = Natural
+  { unwrapNatural :: Integer
+  }
+
+-- good
+newtype Natural = Natural Integer
+
+unwrapNatural :: Natural -> Integer
+unwrapNatural (Natural x) = x
+```
+
+http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/
