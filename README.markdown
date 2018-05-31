@@ -22,6 +22,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Avoid writing partial functions](#avoid-writing-partial-functions)
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
+- [Group imports together](#group-imports-together)
 - [Prefer qualified imports](#prefer-qualified-imports)
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
@@ -184,6 +185,24 @@ if canAccess thing user
 ```
 
 https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
+
+## Group imports together
+
+Imports should be split into two groups: third-party and first-party.
+"Third-party" means anything that comes from Stackage (or Hackage, or GitHub).
+"First-party" means anything that comes from the project itself (or other private dependencies).
+Splitting imports into groups makes it easier to figure out where to look for documentation.
+
+``` hs
+-- bad
+import qualified Data.Aeson as Aeson
+import qualified ITProTV.Internal.Secrets as Secrets
+
+-- good
+import qualified Data.Aeson as Aeson
+
+import qualified ITProTV.Internal.Secrets as Secrets
+```
 
 ## Prefer qualified imports
 
