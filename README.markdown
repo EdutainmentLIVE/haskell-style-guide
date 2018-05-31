@@ -29,6 +29,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Prefer unique identifiers](#prefer-unique-identifiers)
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
+- [Use `newtype` liberally](#use-newtype-liberally)
 
 ## Avoid compiler warnings
 
@@ -305,3 +306,16 @@ Whenever possible, prefer using `Text` instead.
 ```
 
 http://www.stephendiehl.com/posts/strings.html
+
+## Use `newtype` liberally
+
+Type aliases (with `type`) don't add any type safety.
+Type wrappers (with `newtype`) add type safety and don't have any runtime cost.
+
+``` hs
+-- bad
+type Name = Text
+
+-- good
+newtype Name = Name Text
+```
