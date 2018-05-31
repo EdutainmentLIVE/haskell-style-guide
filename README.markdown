@@ -30,6 +30,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
+- [Use smart constructors](#use-smart-constructors)
 
 ## Avoid compiler warnings
 
@@ -319,3 +320,33 @@ type Name = Text
 -- good
 newtype Name = Name Text
 ```
+
+https://robots.thoughtbot.com/lessons-learned-avoiding-primitives-in-elm
+
+## Use smart constructors
+
+Rather than trying to make everything correct by construction,
+prefer simple `newtype` wrappers with smart constructors to check invariants.
+
+``` hs
+-- bad
+data Email = Email
+  { localPart :: Text
+  , domain :: Text
+  }
+
+-- good
+module Email ( Email, toEmail, fromEmail ) where
+
+newtype Email = Email Text
+
+toEmail :: Text -> Maybe Email
+toEmail x = if isEmail x
+  then Just (Email x)
+  else Nothing
+
+fromEmail :: Email -> Text
+fromEmail (Email x) = x
+```
+
+https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html
