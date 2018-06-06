@@ -13,7 +13,7 @@ Try to write code that is easy to understand, debug, and modify.
 
 - [Avoid compiler warnings](#avoid-compiler-warnings)
 - [Apply HLint suggestions](#apply-hlint-suggestions)
-- [Format with Hindent](#format-with-hindent)
+- [Format with Brittany](#format-with-brittany)
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Prefer `case` expressions](#prefer-case-expressions)
 - [Avoid multiple function declarations](#avoid-multiple-function-declarations)
@@ -50,9 +50,9 @@ We use a somewhat custom configuration, but the exact details aren't too importa
 
 https://neilmitchell.blogspot.com/2009/09/how-i-use-hlint.html
 
-## Format with Hindent
+## Format with Brittany
 
-We use [Hindent](https://github.com/commercialhaskell/hindent) to format all Haskell code.
+We use [Brittany](https://github.com/lspitzner/brittany#readme) to format all Haskell code.
 It may not format everything perfectly, but we prefer it to arguing about layout.
 
 https://chrisdone.com/posts/hindent-5
