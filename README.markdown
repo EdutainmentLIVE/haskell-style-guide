@@ -102,7 +102,7 @@ factorial n = n * factorial (n - 1)
 -- good
 factorial n = case n of
   0 -> 1
-  _ -> n * (factorial - 1)
+  _ -> n * factorial (n - 1)
 ```
 
 ## Prefer `do` notation
