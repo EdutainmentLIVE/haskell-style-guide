@@ -48,14 +48,14 @@ We use [HLint](https://github.com/ndmitchell/hlint#readme) to lint all Haskell c
 It suggests many good ways to improve code.
 We use a somewhat custom configuration, but the exact details aren't too important.
 
-https://neilmitchell.blogspot.com/2009/09/how-i-use-hlint.html
+<https://neilmitchell.blogspot.com/2009/09/how-i-use-hlint.html>
 
 ## Format with Brittany
 
 We use [Brittany](https://github.com/lspitzner/brittany#readme) to format all Haskell code.
 It may not format everything perfectly, but we prefer it to arguing about layout.
 
-https://chrisdone.com/posts/hindent-5
+<https://chrisdone.com/posts/hindent-5>
 
 ## Prefer `let` over `where`
 
@@ -70,7 +70,7 @@ https://chrisdone.com/posts/hindent-5
 let kibi = 2 ^ 10 in 3 * kibi
 ```
 
-https://stackoverflow.com/questions/4362328/haskell-where-vs-let
+<https://stackoverflow.com/questions/4362328/haskell-where-vs-let>
 
 ## Prefer `case` expressions
 
@@ -86,7 +86,7 @@ putStrLn (case maybeName of
   Just name -> name ++ "!")
 ```
 
-https://www.yesodweb.com/blog/2015/10/beginner-friendly-code-and-apis
+<https://www.yesodweb.com/blog/2015/10/beginner-friendly-code-and-apis>
 
 ## Avoid multiple function declarations
 
@@ -153,7 +153,7 @@ first xs = case xs of
   _ -> Nothing
 ```
 
-https://www.parsonsmatt.org/2017/10/11/type_safety_back_and_forth.html
+<https://www.parsonsmatt.org/2017/10/11/type_safety_back_and_forth.html>
 
 ## Avoid using partial functions
 
@@ -168,7 +168,7 @@ head []
 listToMaybe []
 ```
 
-https://begriffs.com/posts/2013-08-18-dont-be-partial-to-partial-functions.html
+<https://begriffs.com/posts/2013-08-18-dont-be-partial-to-partial-functions.html>
 
 ## Avoid throwing exceptions
 
@@ -187,7 +187,7 @@ if canAccess thing user
   else pure Nothing
 ```
 
-https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/
+<https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/>
 
 ## Group imports together
 
@@ -233,7 +233,7 @@ Module | Alias
 `Data.ByteString` | `Bytes`
 `Data.ByteString.Lazy` | `LazyBytes`
 
-https://www.parsonsmatt.org/2017/06/23/on_naming_things.html
+<https://www.parsonsmatt.org/2017/06/23/on_naming_things.html>
 
 ## Prefer unqualified operators
 
@@ -307,7 +307,7 @@ Whenever possible, prefer using `Text` instead.
 "beans" :: Text
 ```
 
-http://www.stephendiehl.com/posts/strings.html
+<http://www.stephendiehl.com/posts/strings.html>
 
 ## Use `newtype` liberally
 
@@ -322,7 +322,7 @@ type Name = Text
 newtype Name = Name Text
 ```
 
-https://robots.thoughtbot.com/lessons-learned-avoiding-primitives-in-elm
+<https://robots.thoughtbot.com/lessons-learned-avoiding-primitives-in-elm>
 
 ## Use smart constructors
 
@@ -350,7 +350,7 @@ fromEmail :: Email -> Text
 fromEmail (Email x) = x
 ```
 
-https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html
+<https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html>
 
 ## Avoid fields with `newtype`s
 
@@ -371,4 +371,4 @@ toInteger :: Natural -> Integer
 toInteger (Natural x) = x
 ```
 
-http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/
+<http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/>
