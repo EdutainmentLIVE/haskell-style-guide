@@ -361,14 +361,14 @@ Use regular functions to access the data in the `newtype`.
 ``` hs
 -- bad
 newtype Natural = Natural
-  { unwrapNatural :: Integer
+  { toInteger :: Integer
   }
 
 -- good
 newtype Natural = Natural Integer
 
-unwrapNatural :: Natural -> Integer
-unwrapNatural (Natural x) = x
+toInteger :: Natural -> Integer
+toInteger (Natural x) = x
 ```
 
 http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/
