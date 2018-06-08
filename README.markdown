@@ -27,6 +27,7 @@ Try to write code that is easy to understand, debug, and modify.
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
+- [Avoid primes in names](#avoid-primes-in-names)
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
@@ -279,6 +280,27 @@ data User = User { name :: Text }
 -- good
 data User = User { userName :: Text }
 ```
+
+## Avoid primes in names
+
+``` hs
+-- bad
+users' = filter isAdmin users
+
+-- good
+admins = filter isAdmin users
+
+-- okay
+users_ = filter isAdmin users
+users2 = filter isAdmin users
+```
+
+Primes in names are confusing and should be avoided.
+Try to use descriptive names instead.
+If there isn't a better name to use,
+adding an underscore or number as a suffix is acceptable.
+
+<http://elm-lang.org/blog/the-perfect-bug-report#less-syntax>
 
 ## Prefer explicit export lists
 
