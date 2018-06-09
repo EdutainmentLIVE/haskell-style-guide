@@ -9,6 +9,10 @@ Deviating from the guide is allowed, but be prepared to defend your decision in 
 In general we prefer clarity over cleverness.
 Try to write code that is easy to understand, debug, and modify.
 
+This guide is a living document.
+If you want to add, change, or remove a suggestion,
+please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/issues/new)!
+
 ## Table of contents
 
 - [Avoid compiler warnings](#avoid-compiler-warnings)
