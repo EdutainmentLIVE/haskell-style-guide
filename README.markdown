@@ -36,6 +36,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
 - [Use smart constructors](#use-smart-constructors)
+- [Use descriptive unwrapping names](#use-descriptive-unwrapping-names)
 - [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
 
 ## Avoid compiler warnings
@@ -363,20 +364,36 @@ data Email = Email
   }
 
 -- good
-module Email ( Email, toEmail, fromEmail ) where
+module Email ( Email, textToEmail, emailToText ) where
 
 newtype Email = Email Text
 
-toEmail :: Text -> Maybe Email
-toEmail x = if isEmail x
+textToEmail :: Text -> Maybe Email
+textToEmail x = if isEmail x
   then Just (Email x)
   else Nothing
 
-fromEmail :: Email -> Text
-fromEmail (Email x) = x
+emailToText :: Email -> Text
+emailToText (Email x) = x
 ```
 
 <https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html>
+
+## Use descriptive unwrapping names
+
+If the function that removes a `newtype` wrapper starts with `unwrap`,
+that implies the result is essentially the internal representation of that type.
+That may be true now, but it might change as time goes on.
+Also using a more descriptive function names makes call sites easier to understand.
+So instead of `unwrapX` use `xToY`.
+
+``` hs
+-- bad
+unwrapEmail :: Email -> Text
+
+-- good
+emailToText :: Email -> Text
+```
 
 ## Avoid fields with `newtype`s
 
