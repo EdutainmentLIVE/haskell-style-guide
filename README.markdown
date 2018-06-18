@@ -18,6 +18,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid compiler warnings](#avoid-compiler-warnings)
 - [Apply HLint suggestions](#apply-hlint-suggestions)
 - [Format with Brittany](#format-with-brittany)
+- [Prefer line comments](#prefer-line-comments)
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Prefer `case` expressions](#prefer-case-expressions)
 - [Avoid multiple function declarations](#avoid-multiple-function-declarations)
@@ -62,6 +63,25 @@ We use [Brittany](https://github.com/lspitzner/brittany#readme) to format all Ha
 It may not format everything perfectly, but we prefer it to arguing about layout.
 
 <https://chrisdone.com/posts/hindent-5>
+
+## Prefer line comments
+
+Block comments can be surprisingly complicated because they can be nested.
+That means `{- a {- b -} c -}` is a valid comment
+but `{- a {- b -}` is an invalid comment because it's not terminated.
+To avoid this confusion and to remain consistent,
+we prefer to use line comments for everything.
+The only except is pragmas, which are delimited by `{-#` and `#-}`.
+
+``` hs
+-- bad
+{- hello world -}
+
+-- good
+-- hello world
+```
+
+<https://futhark-lang.org/blog/2017-10-10-block-comments-are-a-bad-idea.html>
 
 ## Prefer `let` over `where`
 
