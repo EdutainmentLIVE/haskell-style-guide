@@ -39,6 +39,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Use smart constructors](#use-smart-constructors)
 - [Use descriptive unwrapping names](#use-descriptive-unwrapping-names)
 - [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
+- [Avoid list comprehensions](#avoid-list-comprehensions)
 
 ## Avoid compiler warnings
 
@@ -435,3 +436,23 @@ toInteger (Natural x) = x
 ```
 
 <http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/>
+
+## Avoid list comprehensions
+
+List comprehensions are cute,
+but they're not often used and can be difficult to puzzle out.
+Prefer using regular functions or `do` notation instead.
+
+``` hs
+-- bad
+[ x * 2 | x <- xs, x > 0 ]
+
+-- good
+map (* 2) (filter (> 0) xs)
+
+-- okay
+do
+  x <- xs
+  guard (x > 0)
+  pure (x * 2)
+```
