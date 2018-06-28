@@ -20,6 +20,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Format with Brittany](#format-with-brittany)
 - [Prefer line comments](#prefer-line-comments)
 - [Prefer `let` over `where`](#prefer-let-over-where)
+- [Avoid out of order binders](#avoid-out-of-order-binders)
 - [Prefer `case` expressions](#prefer-case-expressions)
 - [Avoid multiple function declarations](#avoid-multiple-function-declarations)
 - [Prefer `do` notation](#prefer-do-notation)
@@ -98,6 +99,25 @@ let kibi = 2 ^ 10 in 3 * kibi
 ```
 
 <https://stackoverflow.com/questions/4362328/haskell-where-vs-let>
+
+## Avoid out of order binders
+
+Even though the values bound in a `let` expression can be given in any order,
+they should be defined in a way that makes them easy to read from top to bottom.
+
+``` hs
+-- bad
+let
+  x = y
+  y = 1
+in x
+
+-- good
+let
+  y = 1
+  x = y
+in x
+```
 
 ## Prefer `case` expressions
 
