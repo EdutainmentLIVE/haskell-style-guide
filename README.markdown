@@ -51,6 +51,8 @@ We ignore a few warnings:
 - `-Wno-safe`
 - `-Wno-unsafe`
 
+<https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3>
+
 ## Apply HLint suggestions
 
 We use [HLint](https://github.com/ndmitchell/hlint#readme) to lint all Haskell code.
