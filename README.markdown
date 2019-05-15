@@ -18,6 +18,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 ## Table of contents
 
 - [Avoid compiler warnings](#avoid-compiler-warnings)
+- [Avoid language extensions](#avoid-language-extensions)
 - [Apply HLint suggestions](#apply-hlint-suggestions)
 - [Format with Brittany](#format-with-brittany)
 - [Prefer line comments](#prefer-line-comments)
@@ -54,6 +55,25 @@ We ignore a few warnings:
 - `-Wno-unsafe`
 
 <https://medium.com/mercury-bank/enable-all-the-warnings-a0517bc081c3>
+
+## Avoid language extensions
+
+GHC provides a large number of language extensions.
+Enabling them creates a staggering number of custom sub-languages.
+Sticking to the defaults makes things easier to learn.
+
+``` hs
+-- bad
+{-# LANGUAGE LambdaCase #-}
+\ case
+  () -> ()
+
+-- good
+\ x -> case x of
+  () -> ()
+```
+
+<https://lexi-lambda.github.io/blog/2018/02/10/an-opinionated-guide-to-haskell-in-2018/#any-flavor-you-like>
 
 ## Apply HLint suggestions
 
