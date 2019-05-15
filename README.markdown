@@ -36,6 +36,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
 - [Prefer unique identifiers](#prefer-unique-identifiers)
+- [Use camel case names](#use-camel-case-names)
 - [Avoid primes in names](#avoid-primes-in-names)
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
@@ -350,6 +351,24 @@ data User = User { name :: Text }
 -- good
 data User = User { userName :: Text }
 ```
+
+## Use camel case names
+
+There's no good rationale for this, it's just convention.
+Avoid using underscores to separate words in identifiers.
+Instead use upper case letters for new words.
+
+``` hs
+-- bad
+type LOUD_SNAKE = ()
+quiet_snake = ()
+
+-- good
+type LoudSnake = ()
+quietSnake = ()
+```
+
+In spite of this, some names like `IO` are written in all caps.
 
 ## Avoid primes in names
 
