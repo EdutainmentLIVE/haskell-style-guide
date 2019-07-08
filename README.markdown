@@ -32,6 +32,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid using partial functions](#avoid-using-partial-functions)
 - [Avoid throwing exceptions](#avoid-throwing-exceptions)
 - [Group imports together](#group-imports-together)
+- [Avoid importing parents](#avoid-importing-parents)
 - [Prefer qualified imports](#prefer-qualified-imports)
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
@@ -281,6 +282,12 @@ import qualified Data.Aeson as Aeson
 
 import qualified ITProTV.Internal.Secrets as Secrets
 ```
+
+## Avoid importing parents
+
+A module like `A.B.C` shouldn't import anything from `A.B` or `A`.
+However it is fine to import from `A.B.C.D` or `A.E`.
+This makes the module hierarchy easier to understand.
 
 ## Prefer qualified imports
 
