@@ -45,6 +45,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Use descriptive unwrapping names](#use-descriptive-unwrapping-names)
 - [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
 - [Avoid list comprehensions](#avoid-list-comprehensions)
+- [Prefer monads for building records](#prefer-monads-for-building-records)
 
 ## Avoid compiler warnings
 
@@ -518,4 +519,28 @@ do
   x <- xs
   guard (x > 0)
   pure (x * 2)
+```
+
+## Prefer monads for building records
+
+When building a record it is tempting to use the applicative operators `(<$>)` and `(<*>)`.
+However they can pose a problem when the expression is polymorphic because it's hard to tell if the right values are being put into the right slots.
+Even though the monadic way of writing things is more verbose, it's a lot harder to mess up.
+
+``` hs
+-- bad
+instance FromJSON Episode where
+  parseJSON = withObject "Episode" $ \ object -> Episode
+    <$> object .: "title"
+    <*> object .: "subtitle"
+
+-- good
+instance FromJSON Episode where
+  parseJSON = withObject "Episode" $ \ object -> do
+    title <- object .: "title"
+    subtitle <- object .: "subtitle"
+    pure Episode
+      { episodeTitle = title
+      , episodeSubtitle = subtitle
+      }
 ```
