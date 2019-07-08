@@ -42,6 +42,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
 - [Use smart constructors](#use-smart-constructors)
+- [Expose record constructors and fields](#expose-record-constructors-and-fields)
 - [Use descriptive unwrapping names](#use-descriptive-unwrapping-names)
 - [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
 - [Avoid list comprehensions](#avoid-list-comprehensions)
@@ -463,6 +464,26 @@ emailToText (Email x) = x
 ```
 
 <https://haskell-at-work.com/episodes/2018-02-26-validation-with-smart-constructors.html>
+
+## Expose record constructors and fields
+
+For records, hiding constructors and fields introduces too much boilerplate.
+Unlike `newtype`s, you should simply export the constructors and fields.
+
+``` hs
+-- bad
+module Example ( Person, makePerson, getPersonName, setPersonName ) where
+data Person = Person { personName :: String }
+makePerson = Person
+getPersonName = personName
+setPersonName person name = person { personName = name }
+
+-- good
+module Example ( Person(..) ) where
+data Person = Person { personName :: String }
+```
+
+<https://www.yesodweb.com/book/settings-types>
 
 ## Use descriptive unwrapping names
 
