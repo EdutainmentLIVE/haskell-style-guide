@@ -38,6 +38,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer unique identifiers](#prefer-unique-identifiers)
 - [Use camel case names](#use-camel-case-names)
 - [Avoid primes in names](#avoid-primes-in-names)
+- [Avoid multiple underscore suffixes](#avoid-multiple-underscore-suffixes)
 - [Prefer explicit export lists](#prefer-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
@@ -392,6 +393,23 @@ If there isn't a better name to use,
 adding an underscore or number as a suffix is acceptable.
 
 <http://elm-lang.org/blog/the-perfect-bug-report#less-syntax>
+
+## Avoid multiple underscore suffixes
+
+Using a single underscore is a fine way to distinguish values that would otherwise have the same name.
+However if you find yourself having more than one underscore, consider using a different suffix like a number instead.
+
+``` hs
+-- bad
+users = ...
+users_ = ...
+users__ = ...
+
+-- good
+users1 = ...
+users2 = ...
+users3 = ...
+```
 
 ## Prefer explicit export lists
 
