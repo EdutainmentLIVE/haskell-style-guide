@@ -25,6 +25,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer `let` over `where`](#prefer-let-over-where)
 - [Avoid out of order binders](#avoid-out-of-order-binders)
 - [Prefer `case` expressions](#prefer-case-expressions)
+- [Avoid unnecessary eta reduction](#avoid-unnecessary-eta-reduction)
 - [Avoid multiple function declarations](#avoid-multiple-function-declarations)
 - [Prefer `do` notation](#prefer-do-notation)
 - [Avoid pure `do`](#avoid-pure-do)
@@ -163,6 +164,32 @@ putStrLn (case maybeName of
 ```
 
 <https://www.yesodweb.com/blog/2015/10/beginner-friendly-code-and-apis>
+
+## Avoid unnecessary eta reduction
+
+Excessively point-free code can be difficult to puzzle out.
+In general prefer explicit lambdas and function application.
+
+``` hs
+-- bad
+((. f) . compare .)
+
+-- good
+\ x y -> compare (f x) (f y)
+```
+
+However sometimes eta expansion can make things harder to read.
+Keep things point-free if it's easier to see the shape of an expression.
+
+``` hs
+-- bad
+sum xs = foldr (\ x y -> x + y) 0 xs
+
+-- good
+sum = foldr (+) 0
+```
+
+<https://wiki.haskell.org/Pointfree>
 
 ## Avoid multiple function declarations
 
