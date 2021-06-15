@@ -331,16 +331,6 @@ import qualified Data.Text as Text
 ```
 
 When importing a module named `A.B.….Z`, generally prefer aliasing it as `Z`.
-If that doesn't feel right, please consult the following table:
-
-Module | Alias
---- | ---
-`Foreign` | `Foreign`
-`Data.List` | `List`
-`Data.List.NonEmpty` | `NonEmpty`
-`Control.Monad.IO.Class` | `IO`
-`Data.ByteString` | `Bytes`
-`Data.ByteString.Lazy` | `LazyBytes`
 
 <https://www.parsonsmatt.org/2017/06/23/on_naming_things.html>
 
