@@ -290,6 +290,9 @@ if canAccess thing user
   else pure Nothing
 ```
 
+Throwing exceptions is fine if the caller can't do anything about it anyway.
+You shouldn't throw exceptions that you expect callers to catch.
+
 <https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/>
 
 ## Group imports together
