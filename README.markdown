@@ -37,7 +37,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer qualified imports](#prefer-qualified-imports)
 - [Prefer unqualified operators](#prefer-unqualified-operators)
 - [Prefer functions over operators](#prefer-functions-over-operators)
-- [Prefer unique identifiers](#prefer-unique-identifiers)
+- [Prefer short identifiers](#prefer-short-identifiers)
 - [Use camel case names](#use-camel-case-names)
 - [Avoid primes in names](#avoid-primes-in-names)
 - [Avoid multiple underscore suffixes](#avoid-multiple-underscore-suffixes)
@@ -365,18 +365,21 @@ scooby & snack .~ True
 set snack True scooby
 ```
 
-## Prefer unique identifiers
+## Prefer short identifiers
 
-Any exported identifier within a project should aim to be unique in the context of that project.
-This makes it easy to import the entire project and play around in the REPL without excessive qualification.
-The redundancy, as in `User.userName user`, is not too big of a problem in practice.
+Exported identifiers only need to be unique in the module that they're defined in.
+Modules should be used to separate namespaces.
 
 ``` hs
 -- bad
-data User = User { name :: Text }
+data Company = Company { companyName :: Text }
+data User = User { userName :: Text }
 
 -- good
-data User = User { userName :: Text }
+module Company where
+  data Company = Company { name :: Text }
+module User where
+  data User = User { name :: Text }
 ```
 
 ## Use camel case names
