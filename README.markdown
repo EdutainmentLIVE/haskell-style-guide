@@ -41,7 +41,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Use camel case names](#use-camel-case-names)
 - [Avoid primes in names](#avoid-primes-in-names)
 - [Avoid multiple underscore suffixes](#avoid-multiple-underscore-suffixes)
-- [Prefer explicit export lists](#prefer-explicit-export-lists)
+- [Avoid explicit export lists](#avoid-explicit-export-lists)
 - [Avoid `String`](#avoid-string)
 - [Use `newtype` liberally](#use-newtype-liberally)
 - [Use smart constructors](#use-smart-constructors)
@@ -438,17 +438,16 @@ users2 = ...
 users3 = ...
 ```
 
-## Prefer explicit export lists
+## Avoid explicit export lists
 
-Explicit export lists make it clear exactly which identifiers are being exported.
-They also make it easy to refactor a module by hiding or exposing certain identifiers.
+Explicitly listing exports often causes a lot of busywork.
 
 ``` hs
 -- bad
-module Toppings where
+module Toppings ( pepperoni ) where
 
 -- good
-module Toppings ( pepperoni ) where
+module Toppings where
 ```
 
 ## Avoid `String`
