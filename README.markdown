@@ -96,25 +96,6 @@ It may not format everything perfectly, but we prefer it to arguing about layout
 
 <https://chrisdone.com/posts/hindent-5>
 
-## Prefer line comments
-
-Block comments can be surprisingly complicated because they can be nested.
-That means `{- a {- b -} c -}` is a valid comment
-but `{- a {- b -}` is an invalid comment because it's not terminated.
-To avoid this confusion and to remain consistent,
-we prefer to use line comments for everything.
-The only except is pragmas, which are delimited by `{-#` and `#-}`.
-
-``` hs
--- bad
-{- hello world -}
-
--- good
--- hello world
-```
-
-<https://futhark-lang.org/blog/2017-10-10-block-comments-are-a-bad-idea.html>
-
 ## Prefer `let` over `where`
 
 `let` is an expression and follows the same rules as everything else.
@@ -273,31 +254,9 @@ listToMaybe []
 
 <https://begriffs.com/posts/2013-08-18-dont-be-partial-to-partial-functions.html>
 
-## Avoid throwing exceptions
+## Group all imports together
 
-Even if you're already in `IO`, you should prefer expressing failure with types over using `throw`.
-Just because `IO` can throw exceptions doesn't mean that the only failure mode in `IO` should be exceptions.
-
-``` hs
--- bad
-if canAccess thing user
-  then pure thing
-  else throw (userError "cannot access thing")
-
--- good
-if canAccess thing user
-  then pure (Just thing)
-  else pure Nothing
-```
-
-Throwing exceptions is fine if the caller can't do anything about it anyway.
-You shouldn't throw exceptions that you expect callers to catch.
-
-<https://np.reddit.com/r/haskell/comments/5bkqf1/exceptions_best_practices_in_haskell/>
-
-## Group imports together
-
-Imports should be split into two groups: third-party and first-party.
+Imports should not be split into two groups: third-party and first-party.
 "Third-party" means anything that comes from Stackage (or Hackage, or GitHub).
 "First-party" means anything that comes from the project itself (or other private dependencies).
 Splitting imports into groups makes it easier to figure out where to look for documentation.
@@ -305,11 +264,11 @@ Splitting imports into groups makes it easier to figure out where to look for do
 ``` hs
 -- bad
 import qualified Data.Aeson as Aeson
+
 import qualified ITProTV.Internal.Secrets as Secrets
 
 -- good
 import qualified Data.Aeson as Aeson
-
 import qualified ITProTV.Internal.Secrets as Secrets
 ```
 
@@ -547,27 +506,6 @@ unwrapEmail :: Email -> Text
 -- good
 emailToText :: Email -> Text
 ```
-
-## Avoid fields with `newtype`s
-
-If you expose record fields for a type that has a hidden constructor,
-record updates can break the invariants of your smart constructors.
-Use regular functions to access the data in the `newtype`.
-
-``` hs
--- bad
-newtype Natural = Natural
-  { toInteger :: Integer
-  }
-
--- good
-newtype Natural = Natural Integer
-
-toInteger :: Natural -> Integer
-toInteger (Natural x) = x
-```
-
-<http://taylor.fausak.me/2018/03/16/record-fields-break-smart-constructors/>
 
 ## Avoid list comprehensions
 
