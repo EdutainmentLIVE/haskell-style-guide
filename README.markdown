@@ -565,8 +565,8 @@ case foo of
   Nothing -> Nothing
 -- good
 maybeFieldBar <- case foo of
-                    Just bar -> Bar.maybeField bar
-                    Nothing -> Nothing
+  Just bar -> Bar.maybeField bar
+  Nothing -> Nothing
 case maybeFieldBar of
   Just baz -> Baz.maybeField baz
   Nothing -> Nothing
