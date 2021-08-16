@@ -50,6 +50,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid fields with `newtype`s](#avoid-fields-with-newtypes)
 - [Avoid list comprehensions](#avoid-list-comprehensions)
 - [Prefer monads for building records](#prefer-monads-for-building-records)
+- [Avoid multi-layered nesting](#avoid-multi-layered-nesting)
 
 ## Avoid compiler warnings
 
@@ -549,4 +550,24 @@ instance FromJSON Episode where
       { episodeTitle = title
       , episodeSubtitle = subtitle
       }
+```
+
+## Avoid multi-layered nesting
+
+When seeking values from a nested object, avoid creating nested case statements. Instead seek to pull one value out at a time.
+
+``` hs
+-- bad
+case foo of
+  Just bar -> case Bar.maybeField bar of
+    Just baz -> Baz.maybeField baz
+    Nothing -> Nothing
+  Nothing -> Nothing
+-- good
+maybeFieldBar <- case foo of
+                    Just bar -> Bar.maybeField bar
+                    Nothing -> Nothing
+case maybeFieldBar of
+  Just baz -> Baz.maybeField baz
+  Nothing -> Nothing
 ```
