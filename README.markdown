@@ -569,3 +569,10 @@ case maybeFieldBar of
   Just baz -> Baz.maybeField baz
   Nothing -> Nothing
 ```
+
+## Prefer simple code over comments
+
+Comments can be considered a code smell. If the code needs commented then it's
+probably too complex. Of course there will be exceptions. During code review, if
+someone has a question about the code, consider this an opportunity to simplify
+the code or if necessary, comment it.
