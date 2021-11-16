@@ -138,7 +138,7 @@ in x
 putStrLn ("howdy " ++ maybe "stranger." (++ "!") maybeName)
 
 -- good
-putStrLn (case maybeName of
+putStrLn "howdy " ++ (case maybeName of
   Nothing -> "stranger."
   Just name -> name ++ "!")
 ```
