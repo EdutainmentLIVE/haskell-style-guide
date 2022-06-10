@@ -58,6 +58,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid excessive parentheses](#avoid-excessive-parentheses)
 - [Prefer composition to application](#prefer-composition-to-application)
 - [Avoid big tuples](#avoid-big-tuples)
+- [Avoid duplicate guards](#avoid-duplicate-guards)
 
 ## Avoid compiler warnings
 
@@ -723,4 +724,22 @@ Programmer
   , name = "Taylor"
   , language = "Haskell"
   }
+```
+
+## Avoid duplicate guards
+
+When writing declarations with guards, avoid re-stating the same bindings.
+
+``` hs
+-- bad
+case f x of
+  y | p y -> a
+  y | q y -> b
+  _ -> c
+
+-- good
+case f x of
+  y | p y -> a
+    | q y -> b
+  _ -> c
 ```
