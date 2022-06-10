@@ -57,6 +57,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid mixing ADTs and records](#avoid-mixing-adts-and-records)
 - [Avoid excessive parentheses](#avoid-excessive-parentheses)
 - [Prefer composition to application](#prefer-composition-to-application)
+- [Avoid big tuples](#avoid-big-tuples)
 
 ## Avoid compiler warnings
 
@@ -707,3 +708,19 @@ state = if someCondition
 ```
 
 <https://existentialtype.wordpress.com/2011/03/15/boolean-blindness/>
+
+## Avoid big tuples
+
+After about 3 or 4 elements, you should consider changing from a tuple to a custom data type.
+
+``` hs
+-- bad
+( 32, "Taylor", "Haskell" )
+
+-- good
+Programmer
+  { age = 32
+  , name = "Taylor"
+  , language = "Haskell"
+  }
+```
