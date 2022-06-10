@@ -685,3 +685,25 @@ h $ g $ f x
 -- good
 h . g $ f x
 ```
+
+## Avoid boolean blindness
+
+Whenever possible you should define a custom type instead of using a `Bool`.
+
+``` hs
+-- bad
+isActive :: Bool
+isActive = someCondition
+
+-- good
+data State
+  = Active
+  | Inactive
+
+state :: State
+state = if someCondition
+  then Active
+  else Inactive
+```
+
+<https://existentialtype.wordpress.com/2011/03/15/boolean-blindness/>
