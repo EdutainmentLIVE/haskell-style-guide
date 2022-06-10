@@ -53,6 +53,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid multi-layered nesting](#avoid-multi-layered-nesting)
 - [Derive at least `Eq` and `Show`](#derive-at-least-eq-and-show)
 - [Avoid backtick operators](#avoid-backtick-operators)
+- [Avoid separate `let`s](#avoid-separate-lets)
 
 ## Avoid compiler warnings
 
@@ -618,4 +619,20 @@ The only exception is Hspec's `shouldBe` functions, which are designed to be wri
 
 ```other
 1 + 2 `shouldBe` 3
+```
+
+## Avoid separate `let`s
+
+```other
+-- bad
+do
+  let x = 1
+  let y = 2
+  pure (x + y)
+
+-- good
+let
+  x = 1
+  y = 2
+pure (x + y)
 ```
