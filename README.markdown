@@ -51,6 +51,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid list comprehensions](#avoid-list-comprehensions)
 - [Prefer monads for building records](#prefer-monads-for-building-records)
 - [Avoid multi-layered nesting](#avoid-multi-layered-nesting)
+- [Derive at least `Eq` and `Show`](#derive-at-least-eq-and-show)
 
 ## Avoid compiler warnings
 
@@ -570,4 +571,32 @@ maybeFieldBar <- case foo of
 case maybeFieldBar of
   Just baz -> Baz.maybeField baz
   Nothing -> Nothing
+```
+
+## Derive at least `Eq` and `Show`
+
+Both the `Eq` and `Show` type classes are frequently used for debugging. Be sure to derive them for any custom types that you define.
+
+``` hs
+-- bad
+data Switch
+  = Off
+  | On
+
+-- good
+data Switch
+  = Off
+  | On
+  deriving (Eq, Show)
+```
+
+The only exception is for types that have sensitive information in them, like passwords. In that case you may want no `Show` instance at all, or you may want an instance that hides the information.
+
+``` hs
+newtype Password
+  = Password Text
+  deriving Eq
+
+instance Show Password where
+  show = const "Password \"REDACTED\""
 ```
