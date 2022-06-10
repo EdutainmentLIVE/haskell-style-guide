@@ -55,6 +55,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid backtick operators](#avoid-backtick-operators)
 - [Avoid separate `let`s](#avoid-separate-lets)
 - [Avoid mixing ADTs and records](#avoid-mixing-adts-and-records)
+- [Avoid excessive parentheses](#avoid-excessive-parentheses)
 
 ## Avoid compiler warnings
 
@@ -658,4 +659,16 @@ newtype T1
 
 newtype T2
   = T2 Double
+```
+
+## Avoid excessive parentheses
+
+When possible you should prefer using the `($)` operator to avoid parentheses.
+
+``` hs
+-- bad
+g (f x)
+
+-- good
+g $ f x
 ```
