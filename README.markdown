@@ -56,6 +56,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid separate `let`s](#avoid-separate-lets)
 - [Avoid mixing ADTs and records](#avoid-mixing-adts-and-records)
 - [Avoid excessive parentheses](#avoid-excessive-parentheses)
+- [Prefer composition to application](#prefer-composition-to-application)
 
 ## Avoid compiler warnings
 
@@ -671,4 +672,16 @@ g (f x)
 
 -- good
 g $ f x
+```
+
+## Prefer composition to application
+
+Rather than have multiple `($)` operators in a row, change all but the last one to `(.)`.
+
+``` hs
+-- bad
+h $ g $ f x
+
+-- good
+h . g $ f x
 ```
