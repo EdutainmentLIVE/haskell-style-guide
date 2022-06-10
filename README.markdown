@@ -52,6 +52,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer monads for building records](#prefer-monads-for-building-records)
 - [Avoid multi-layered nesting](#avoid-multi-layered-nesting)
 - [Derive at least `Eq` and `Show`](#derive-at-least-eq-and-show)
+- [Avoid backtick operators](#avoid-backtick-operators)
 
 ## Avoid compiler warnings
 
@@ -599,4 +600,22 @@ newtype Password
 
 instance Show Password where
   show = const "Password \"REDACTED\""
+```
+
+## Avoid backtick operators
+
+Turning a regular function into an infix operator using backticks is pretty weird and easy to miss. We should prefer calling functions the normal way.
+
+```other
+-- bad
+apple `elem` fruits
+
+-- good
+elem apple fruits
+```
+
+The only exception is Hspec's `shouldBe` functions, which are designed to be written infix.
+
+```other
+1 + 2 `shouldBe` 3
 ```
