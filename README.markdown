@@ -60,6 +60,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Avoid big tuples](#avoid-big-tuples)
 - [Avoid duplicate guards](#avoid-duplicate-guards)
 - [Prefer arbitrary precision numbers](#prefer-arbitrary-precision-numbers)
+- [Prefer separating re-exports and new declarations](#prefer-separating-re-exports-and-new-declarations)
 
 ## Avoid compiler warnings
 
@@ -764,3 +765,22 @@ The exact recommendation here depends on the type you're using.
 - If you're using a floating point number like `Double`, you should use `Rational` instead.
 
 However it's important to keep in mind that many systems do not support arbitrary precision. If you're working with a type that must be stored in a database like PostgreSQL or sent over the wire to JavaScript, a limited precision type is probably more appropriate.
+
+## Prefer separating re-exports and new declarations
+
+``` hs
+-- bad
+module A ( module Z, f ) where
+import Z
+f = undefined
+
+-- good
+module B ( f ) where
+f = undefined
+
+module A ( module Z, module B ) where
+import Z
+import B
+```
+
+If a module more or less re-exports other modules, that's all it should do. New declarations should go into other modules that will then get pulled into the re-exporter.
