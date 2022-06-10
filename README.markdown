@@ -54,6 +54,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Derive at least `Eq` and `Show`](#derive-at-least-eq-and-show)
 - [Avoid backtick operators](#avoid-backtick-operators)
 - [Avoid separate `let`s](#avoid-separate-lets)
+- [Avoid mixing ADTs and records](#avoid-mixing-adts-and-records)
 
 ## Avoid compiler warnings
 
@@ -623,7 +624,7 @@ The only exception is Hspec's `shouldBe` functions, which are designed to be wri
 
 ## Avoid separate `let`s
 
-```other
+``` hs
 -- bad
 do
   let x = 1
@@ -635,4 +636,26 @@ let
   x = 1
   y = 2
 pure (x + y)
+```
+
+## Avoid mixing ADTs and records
+
+In general a data type should either be an ADT like `data X = A Int | B String` or a record like `data X = X { a :: Int, b :: String }`. Mixing both is a recipe for disaster.
+
+``` hs
+-- bad
+data T
+  = C1 { f1 :: Int }
+  | C2 { f2 :: Double }
+
+-- good
+data T
+  = C1 T1
+  | C2 T2
+
+newtype T1
+  = T1 Int
+
+newtype T2
+  = T2 Double
 ```
