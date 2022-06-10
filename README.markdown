@@ -59,6 +59,7 @@ please [open an issue](https://github.com/EdutainmentLIVE/haskell-style-guide/is
 - [Prefer composition to application](#prefer-composition-to-application)
 - [Avoid big tuples](#avoid-big-tuples)
 - [Avoid duplicate guards](#avoid-duplicate-guards)
+- [Prefer arbitrary precision numbers](#prefer-arbitrary-precision-numbers)
 
 ## Avoid compiler warnings
 
@@ -743,3 +744,23 @@ case f x of
     | q y -> b
   _ -> c
 ```
+
+## Prefer arbitrary precision numbers
+
+Whenever possible you should prefer using arbitrary precision numbers.
+
+``` hs
+-- bad
+1 :: Int
+
+-- good
+1 :: Integer
+```
+
+The exact recommendation here depends on the type you're using.
+
+- If you're using a signed integer like `Int` or one if its sized variants like `Int32`, you should use `Integer` instead.
+- If you're using an unsigned integer like `Word` or one of its sized variants like `Word32`, you should use `Natural` instead.
+- If you're using a floating point number like `Double`, you should use `Rational` instead.
+
+However it's important to keep in mind that many systems do not support arbitrary precision. If you're working with a type that must be stored in a database like PostgreSQL or sent over the wire to JavaScript, a limited precision type is probably more appropriate.
